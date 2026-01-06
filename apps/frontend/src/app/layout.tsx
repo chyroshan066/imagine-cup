@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AnalyticsWrapper from "@/lib/analytics/vercel-analytics";
-import { font_name } from "./fonts";
+// import { font_name } from "./fonts";
 
 export const metadata: Metadata = {
   title: "<website_title>",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   authors: [{ name: "<website_name>" }],
   creator: "<website_name>",
   publisher: "<website_name>",
-  metadataBase: new URL("https://<domain_name>"),
+  // metadataBase: new URL("https://<domain_name>"),
   alternates: {
     canonical: "/",
   },
@@ -107,7 +107,10 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={`${font_name.variable}`} suppressHydrationWarning={true}>
+      <body
+        // className={`${font_name.variable}`}
+        suppressHydrationWarning={true}
+      >
         {children}
         <AnalyticsWrapper />
       </body>
