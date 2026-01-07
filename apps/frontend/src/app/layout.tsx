@@ -1,7 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
+import "@/styles/globals.css";
 import AnalyticsWrapper from "@/lib/analytics/vercel-analytics";
 // import { font_name } from "./fonts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TooltipProvider } from "@/components/ui/Tooltip";
+import { Toaster } from "@/components/ui/Toaster";
+import { Toaster as Sonner } from "@/components/ui/Sonner";
+import { Providers } from "@/components/Providers";
 
 export const metadata: Metadata = {
   title: "<website_title>",
@@ -91,6 +96,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+const queryClient = new QueryClient();
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -99,20 +106,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
+        {/* <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify("structured_data_from_constants"),
           }}
-        />
+        /> */}
       </head>
 
       <body
         // className={`${font_name.variable}`}
         suppressHydrationWarning={true}
       >
-        {children}
-        <AnalyticsWrapper />
+        {/* <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner /> */}
+        <Providers>{children}</Providers>
+
+        {/* </TooltipProvider>
+        </QueryClientProvider>
+        <AnalyticsWrapper /> */}
       </body>
     </html>
   );
